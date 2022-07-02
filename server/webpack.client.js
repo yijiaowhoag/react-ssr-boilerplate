@@ -3,11 +3,10 @@ const { merge } = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
 
 const config = {
-  target: 'node',
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js',
   },
 };
 
