@@ -1,26 +1,10 @@
 import express from 'express';
-const React = require('react');
-import * as ReactDOMServer from 'react-dom/server';
-import Home from './client/components/Home';
+import { requestHandler } from './helpers/renderer';
 
 const app = express();
 
 app.use(express.static('public'));
-app.get('/', (req, res) => {
-  const content = ReactDOMServer.renderToString(<Home />);
-
-  const html = `
-    <html>
-      <head></head>
-      <body>
-        <div id="root">${content}</div>
-        <script src="bundle.js"></script>
-      </body>
-    </html>
-  `;
-
-  res.send(html);
-});
+app.get('*', requestHandler);
 
 app.listen(3000, () => {
   console.log('🚀 Listening on port 3000');
