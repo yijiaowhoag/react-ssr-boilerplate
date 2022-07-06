@@ -8,6 +8,10 @@ import routes from '../client/routes';
 
 const handleRender = async (req, res, store) => {
   const matches = matchRoutes(routes, req.path) || [];
+  if (matches.length === 0) {
+    return res.status(404).send('Not found');
+  }
+
   const promises = matches.map(({ route }) =>
     route.loadData ? route.loadData(store) : null
   );
@@ -17,7 +21,7 @@ const handleRender = async (req, res, store) => {
 
     const content = ReactDOMServer.renderToString(
       <Provider store={store}>
-        <StaticRouter location={req.path} context={{}}>
+        <StaticRouter location={req.path}>
           {renderMatches(matches)}
         </StaticRouter>
       </Provider>

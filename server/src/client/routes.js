@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import App, { loadData as fetchCurrentUser } from './App';
 import Home from './pages/HomePage';
 import Users, { loadData as fetchUsers } from './pages/UsersPage';
+import NotFound from './pages/NotFoundPage';
 
 const routes = [
   {
@@ -22,6 +23,7 @@ const routes = [
         element: <Users />,
         loadData: fetchUsers,
       },
+      { key: 'not-found', path: '*', element: <NotFound /> },
     ],
   },
 ];
