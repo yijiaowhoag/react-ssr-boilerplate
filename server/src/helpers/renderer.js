@@ -18,7 +18,7 @@ const handleRender = async (req, res, store) => {
       (promise) =>
         promise &&
         new Promise((resolve, reject) => {
-          promise.then(resolve).catch(reject);
+          promise.then(resolve).catch(resolve);
         })
     );
 
