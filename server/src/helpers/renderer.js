@@ -12,9 +12,15 @@ const handleRender = async (req, res, store) => {
     return res.status(404).send('Not found');
   }
 
-  const promises = matches.map(({ route }) =>
-    route.loadData ? route.loadData(store) : null
-  );
+  const promises = matches
+    .map(({ route }) => (route.loadData ? route.loadData(store) : null))
+    .map(
+      (promise) =>
+        promise &&
+        new Promise((resolve, reject) => {
+          promise.then(resolve).catch(reject);
+        })
+    );
 
   try {
     await Promise.all(promises);

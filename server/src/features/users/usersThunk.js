@@ -7,7 +7,10 @@ export const fetchUsers = createAsyncThunk(
       let response = await api.get('/users');
       return response.data;
     } catch (err) {
-      console.error(err);
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response.data);
     }
   }
 );

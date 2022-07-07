@@ -4,6 +4,7 @@ import { fetchCurrentUser } from './authThunk';
 const initialState = {
   currentUser: null,
   isAuth: false,
+  error: '',
 };
 
 const authSlice = createSlice({
@@ -21,7 +22,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         state.isAuth = false;
-        state.error = action.error;
+        state.error = action.payload.error || action.error.message;
       });
   },
 });

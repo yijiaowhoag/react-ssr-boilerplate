@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUsers } from './usersThunk';
+import { fetchAdmins } from './adminsThunk';
 
 const initialState = {
   entities: [],
@@ -7,24 +7,24 @@ const initialState = {
   error: '',
 };
 
-const usersSlice = createSlice({
-  name: 'users',
+const adminsSlice = createSlice({
+  name: 'admins',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state, action) => {
+      .addCase(fetchAdmins.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchAdmins.fulfilled, (state, action) => {
         state.loading = false;
         state.entities = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
+      .addCase(fetchAdmins.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.error || action.error.message;
       });
   },
 });
 
-export const usersReducer = usersSlice.reducer;
+export const adminsReducer = adminsSlice.reducer;

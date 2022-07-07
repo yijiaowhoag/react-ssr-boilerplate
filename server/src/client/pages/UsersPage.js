@@ -5,13 +5,15 @@ import UsersList from '../components/UsersList';
 
 const Users = () => {
   const dispatch = useDispatch();
-  const { entities, loading } = useSelector((state) => state.users);
+  const { entities, loading, error } = useSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
   if (loading) return <p>Loading...</p>;
+
+  if (error) return <p>{error}</p>;
 
   return (
     <div>
