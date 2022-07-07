@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { fetchUsers } from '../../features/users/usersThunk';
 import UsersList from '../components/UsersList';
 
@@ -17,6 +18,10 @@ const Users = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{`${entities.length} Users`}</title>
+        <meta property="og:title" content="Users" />
+      </Helmet>
       <h1>Users Page</h1>
       <UsersList users={entities} />
     </div>
