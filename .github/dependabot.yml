@@ -13,5 +13,3 @@ updates:
       - dependency-type: "indirect"
     labels:
       - "dependencies"
-    reviewers:
-      - "yijiaow"
