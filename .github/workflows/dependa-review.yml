@@ -3,10 +3,11 @@ name: Dependabot Review
 on:
   pull_request_target:
     types: [assigned, opened, synchronize, reopened]
-    branches: ['security-updates']
+    branches: [security-updates]
 
 permissions:
   pull-requests: write
+  contents: write
 
 jobs:
   review-pr:
